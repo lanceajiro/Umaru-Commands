@@ -8,7 +8,7 @@ export const setup = {
   permission: "Users",
   creator: "Lance Ajiro",
   description: "Convert text to binary and decode binary to text.",
-  category: "tools",
+  category: "Utility",
   usages: ["[text]", "-decode [BinaryText]"],
   cooldown: 5,
   isPrefix: true,
