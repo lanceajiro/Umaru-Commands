@@ -7,7 +7,7 @@ export const setup = {
   permission: 'Users',
   creator: 'alice',
   description: 'Calculator',
-  category: 'study',
+  category: 'Education',
   usages: ['1+1'],
   cooldown: 5,
   isPrefix: true,
