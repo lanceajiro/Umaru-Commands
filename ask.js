@@ -20,11 +20,11 @@ export const execCommand = async function ({ api, event, kernel, key, umaru, key
   const mid = messageID;
 
   // Extract the question from the arguments
-  const q = args.join(' ');
+  const q = args.slice(1).join(" ");
 
-  // Check if args is undefined or null
-  if (!args || args.length === 0) return usage(this, prefix, event);
-  
+  // Check if q is an empty string
+  if (!q) return usage(this, prefix, event);
+
   try {
     api.setMessageReaction('🟢', mid, (err) => {}, true);
 
@@ -45,4 +45,3 @@ export const execCommand = async function ({ api, event, kernel, key, umaru, key
     api.sendMessage(e.message, tid, mid);
   }
 };
-  
