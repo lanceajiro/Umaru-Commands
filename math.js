@@ -20,15 +20,14 @@ export const execCommand = async function ({ api, event, kernel, key, umaru, key
   const out = (msg) => api.sendMessage(msg, threadID, messageID);
 
   try {
-    const alice = Math.floor(Math.random() * 5) + 1;
     const key = 'T8J8YV-H265UQ762K';
     const content = event.type == 'message_reply' ? event.messageReply.body : args.join(' ');
 
     if (!content) {
-      return out({
-        body: `Missing input\n\nHow to use?\n${prefix}math <input>\n\nExample:\n${prefix}math 1 + 1`,
-      });
-    } else if (content.indexOf('-p') == 0) {
+      return usage(this, prefix, event);
+    }
+
+    if (content.indexOf('-p') == 0) {
       try {
         content = 'primitive ' + content.slice(3, content.length);
         const data = (await axios.get(`http://api.wolframalpha.com/v2/query?appid=${key}&input=${encodeURIComponent(content)}&output=json`)).data;
@@ -86,6 +85,7 @@ export const execCommand = async function ({ api, event, kernel, key, umaru, key
 
         if (data.queryresult.pods.some((e) => e.id == 'Solution')) {
           const value = data.queryresult.pods.find((e) => e.id == 'Solution');
+          const text = [];
 
           for (let e of value.subpods) {
             text.push(e.plaintext);
@@ -94,6 +94,7 @@ export const execCommand = async function ({ api, event, kernel, key, umaru, key
           return out(text.join('\n'));
         } else if (data.queryresult.pods.some((e) => e.id == 'ComplexSolution')) {
           const value = data.queryresult.pods.find((e) => e.id == 'ComplexSolution');
+          const text = [];
 
           for (let e of value.subpods) {
             text.push(e.plaintext);
@@ -111,4 +112,3 @@ export const execCommand = async function ({ api, event, kernel, key, umaru, key
     out(`${error}`);
   }
 };
-          
