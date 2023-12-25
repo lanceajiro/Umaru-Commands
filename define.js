@@ -9,15 +9,17 @@ export const setup = {
   creator: 'Lance Ajiro',
   description: 'Retrieves the definition of the specified word using Google Dictionary.',
   category: 'dictionary',
-  usages: ['{pn} words'],
+  usages: ['[words]'],
   cooldown: 5,
   isPrefix: true,
 };
 
 export const domain = { "define": setup.name };
 
-export const execCommand = async function ({ api, event, kernel, umaru, keyGenerator, args }) {
+export const execCommand = async function ({ api, event, kernel, umaru, keyGenerator, args, prefix, usage }) {
   try {
+    let text = args.join(" ");
+  if (!text) return usage(this, prefix, event);
     await umaru.createJournal(event);
 
     const word = args.join(' ');
