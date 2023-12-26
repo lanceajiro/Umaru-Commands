@@ -35,7 +35,7 @@ export const execCommand = async function ({ api: t, event: s, timeZone: n, umar
     e.platform()
   } ${e.machine()}\n• Host: ${e.userInfo().username}@${e.hostname()}\n• Kernel: ${e.release()}\n• Platform: ${
     process.env.REPL_OWNER ? "replit" : process.env.CSB_SANDBOX_ID ? "codesandbox" : e.platform()
-  } \n• NodeJS Memory: ${(process.memoryUsage().rss / 1024 / 1024).toFixed(2)}MB\nDate: ${
+  } \n• NodeJS Memory: ${(process.memoryUsage().rss / 1024 / 1024).toFixed(2)}MB\n• Date: ${
     o.tz(n).format("LLL")
   }\n• Database Storage: ${bb} MB\n• Ping: ${Date.now() - parseInt(s.timestamp)} ms\n\nOwner:\n${(m.config.Anonymous == true) ? "Anonymous" :m.config.Owner}`;
   return t.sendMessage(a, s.threadID, s.messageID);
