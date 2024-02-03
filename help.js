@@ -109,7 +109,7 @@ export const execCommand = async function ({
     let items = "List of Commands\n\n";
     let page = parseInt(c) || 1;
     let num = 30;
-    let i = 1 + page * num - 10;
+    let i = 1 + page * num - 30;
     let cut = page * num - num;
     const commands = allCommands.slice(cut, cut + num);
     if (commands.length === 0)
