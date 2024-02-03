@@ -5,7 +5,7 @@ export const setup = {
   creator: "Lance Ajiro",
   description: "Adds the user to Ajiro Camp.",
   category: "box",
-  usages: "Use {pn} to join the Ajiro Camp.",
+  usages: "",
   cooldown: 0,
   isPrefix: true,
 };
